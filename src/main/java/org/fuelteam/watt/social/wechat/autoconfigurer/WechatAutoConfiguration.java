@@ -5,7 +5,6 @@ import org.fuelteam.watt.social.wechat.connect.WechatConnectionFactory;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureBefore;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.autoconfigure.social.SocialAutoConfigurerAdapter;
 import org.springframework.boot.autoconfigure.social.SocialWebAutoConfiguration;
@@ -18,9 +17,9 @@ import org.springframework.social.connect.ConnectionFactory;
 
 @Configuration
 @ConditionalOnClass({ SocialConfigurerAdapter.class, WechatConnectionFactory.class })
-@ConditionalOnProperty(prefix = "spring.social.wechat", name = "app-id")
 @AutoConfigureBefore(SocialWebAutoConfiguration.class)
 @AutoConfigureAfter(WebMvcAutoConfiguration.class)
+@EnableConfigurationProperties(WechatProperties.class)
 public class WechatAutoConfiguration {
 
     @Configuration
